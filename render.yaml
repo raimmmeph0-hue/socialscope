@@ -1,0 +1,11 @@
+
+services:
+  - type: web
+    name: socialscope
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: YOUTUBE_API_KEY
+        sync: false
