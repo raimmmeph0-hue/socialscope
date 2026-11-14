@@ -1,0 +1,12 @@
+{
+  "name": "socialscope",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Public social profile explorer with an account-change timeline and public domain DNS lookup",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

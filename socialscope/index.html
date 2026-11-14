@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore public social profile data, public videos and comments, observed profile changes, and public website DNS records.">
+<title>SocialScope — Public Profile Explorer</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/"><span class="mark">S</span>SocialScope</a><span class="status"><i></i> Public information only</span></header>
+<main class="wrap">
+<section class="hero"><p class="eyebrow">PUBLIC PROFILE EXPLORER</p><h1>Explore public profiles.<br><span>See what can actually be verified.</span></h1><p>Look up public channel details, videos and comments. Keep a dated record of profile changes observed from the time you start tracking.</p></section>
+<section class="search panel">
+ <div class="field"><label for="platform">PLATFORM</label><select id="platform"><option value="youtube">YouTube · live API lookup</option><option value="tiktok">TikTok · integration not configured</option><option value="instagram">Instagram · integration not configured</option><option value="x">X · integration not configured</option></select></div>
+ <div class="field grow"><label for="handle">PUBLIC USERNAME OR HANDLE</label><input id="handle" placeholder="@Google" maxlength="100" autocomplete="off"></div>
+ <button id="searchBtn" class="primary">Search profile <b>→</b></button>
+ <small id="apiHint" class="hint">YouTube requires a free Google Cloud project with YouTube Data API v3 enabled and an API key.</small>
+</section>
+<div id="notice" class="notice" role="status" aria-live="polite">Checking server…</div>
+<section id="profileSection" class="hidden">
+ <article class="panel profile">
+  <div class="profile-top"><img id="avatar" alt="Profile image" class="avatar"><div class="profile-text"><p class="eyebrow">PUBLIC CHANNEL</p><h2 id="displayName"></h2><p id="username" class="muted"></p><p id="bio" class="bio"></p><a id="profileLink" target="_blank" rel="noopener noreferrer">Open original channel ↗</a></div></div>
+  <div id="stats" class="stats"></div>
+  <div class="metadata"><div><label>PUBLIC CHANNEL ID</label><strong id="accountId"></strong></div><div><label>ACCOUNT CREATED</label><strong id="createdAt"></strong></div><div><label>DATA RETRIEVED</label><strong id="retrievedAt"></strong></div></div>
+  <p class="micro">Creation date is the platform-reported channel creation timestamp, not an estimate.</p>
+ </article>
+ <div class="section-title"><div><p class="eyebrow">PUBLIC CONTENT</p><h2>Recent videos</h2></div><span id="videoCount" class="muted"></span></div>
+ <div id="videos" class="videos"></div>
+ <div class="section-title"><div><p class="eyebrow">OBSERVED CHANGES</p><h2>Account timeline</h2></div><button id="clearHistory" class="quiet">Clear local history</button></div>
+ <p class="subtle">Snapshots are stored only in this browser. Changes are dated when SocialScope first observes them; it cannot reconstruct edits from before tracking began.</p>
+ <div id="timeline" class="timeline"></div>
+</section>
+
+<section class="panel ip-panel">
+ <div><p class="eyebrow">PUBLIC WEBSITE INFRASTRUCTURE</p><h2>Linked website DNS lookup</h2><p class="subtle">Check public DNS records for a website domain someone has shared. This does not identify a social-media user's device or personal IP address.</p></div>
+ <div class="dns-form"><input id="domainInput" placeholder="example.com" aria-label="Website domain"><button id="dnsBtn" class="secondary">Look up domain</button></div>
+ <div id="dnsResult" class="dns-result" aria-live="polite"><span class="muted">Enter a public website domain to view its DNS records.</span></div>
+</section>
+
+<section class="panel limits"><div class="info">i</div><div><h3>Privacy and data limits</h3><p>This version uses the official YouTube Data API for channel information, public uploads and public comment threads. It does not expose private liked videos, saved videos, watch history, private messages, hidden follows or personal IP addresses. TikTok, Instagram and X need separate approved API access and are not active in this starter build. Public DNS records belong to websites, not account owners.</p></div></section>
+<footer>SocialScope · Public data, clear limits · Local profile snapshots stay in this browser</footer>
+</main>
+<dialog id="commentsDialog"><div class="dialog-head"><div><p class="eyebrow">PUBLIC DISCUSSION</p><h2>Video comments</h2></div><button id="closeDialog" class="close" aria-label="Close">×</button></div><div id="commentsList"></div></dialog>
+<script src="/app.js"></script>
+</body></html>
