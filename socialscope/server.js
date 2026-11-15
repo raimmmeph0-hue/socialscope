@@ -235,10 +235,19 @@ const server = http.createServer(async (req, res) => {
   try {
 
     // TIKTOK LOGIN START
-    if (req.method === "GET" && url.pathname === "/tiktok/login") {
-      const clientKey = process.env.TIKTOK_CLIENT_KEY;
 
-      if (!clientKey) {
+    
+if (req.method === "GET" && url.pathname === "/tiktok/login") {
+  const clientKey = process.env.TIKTOK_CLIENT_KEY;
+
+  console.log("TikTok key check:", {
+    present: Boolean(clientKey),
+    length: clientKey?.length,
+    hasWhitespace: /\s/.test(clientKey || "")
+  });
+
+  if (!clientKey) {
+
         return reply(res, 503, {
           error: "TikTok Client Key is not configured."
         });
