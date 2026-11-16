@@ -239,7 +239,11 @@ const server = http.createServer(async (req, res) => {
     
 if (req.method === "GET" && url.pathname === "/tiktok/login") {
   const clientKey = process.env.TIKTOK_CLIENT_KEY;
-
+console.log("TikTok key diagnostic:", {
+  length: clientKey?.length,
+  startsWithWhitespace: /^\s/.test(clientKey || ""),
+  endsWithWhitespace: /\s$/.test(clientKey || "")
+});
   console.log("TikTok key check:", {
     present: Boolean(clientKey),
     length: clientKey?.length,
